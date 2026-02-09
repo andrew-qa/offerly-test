@@ -14,7 +14,7 @@ type OffersTableProps = {
 
 export function OffersTable({ offers }: OffersTableProps) {
   return (
-    <Table>
+    <Table className="border border-border [&_th]:border [&_td]:border">
       <TableHeader>
         <TableRow>
           <TableHead>Title</TableHead>
