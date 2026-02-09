@@ -44,7 +44,7 @@ pipx install poetry
 
 ```bash
 git clone https://github.com/andrew-qa/offerly-test.git
-cd offerly
+cd offerly-test
 ```
 
 ## Run With Docker (Recommended)
