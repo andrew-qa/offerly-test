@@ -3,17 +3,22 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { addInfluencer } from "@/src/api"
 
-export function AddInfluencerForm() {
+type AddInfluencerFormProps = {
+  onCreated?: () => void
+}
+
+export function AddInfluencerForm({ onCreated }: AddInfluencerFormProps) {
   const [name, setName] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!name.trim()) return
     setIsLoading(true)
     try {
       await addInfluencer(name)
-      setName("") // reset form
+      setName("")
+      onCreated?.()
       alert("Influencer added!")
     } catch (error) {
       console.error("Failed to add influencer", error)

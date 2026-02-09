@@ -1,14 +1,13 @@
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { getInfluencers, getOffers, getOffersWithOverrides, type Influencer, type Offer } from "@/src/api"
 import { OffersTable } from "../components/offers-table"
 import { AddInfluencerForm } from "@/components/add-influencer-form"
+import { AddOfferForm } from "@/components/add-offer-form"
 import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
@@ -20,17 +19,25 @@ function App() {
   const [selectedInfluencer, setSelectedInfluencer] = useState<string | null>(null)
   const [filter, setFilter] = useState("")
 
-  useEffect(() => {
-    getOffers().then(setOffers)
+  const refreshInfluencers = () => {
     getInfluencers().then(setInfluencers)
-  }, [])
+  }
 
   useEffect(() => {
+    getOffers().then(setOffers)
+    refreshInfluencers()
+  }, [])
+
+  const refreshOffers = () => {
     if (selectedInfluencer && selectedInfluencer !== "all") {
       getOffersWithOverrides(selectedInfluencer).then(setOffers)
     } else {
       getOffers().then(setOffers)
     }
+  }
+
+  useEffect(() => {
+    refreshOffers()
   }, [selectedInfluencer])
 
   const filteredOffers = offers.filter((offer) =>
@@ -65,8 +72,14 @@ function App() {
       <hr className="my-6" />
       <div className="p-6 max-w-2xl">
         <h2 className="text-xl font-bold mb-4">Add Influencer</h2>
-        <AddInfluencerForm />
+        <AddInfluencerForm onCreated={refreshInfluencers} />
       </div>
+      <hr className="my-6" />
+      <div className="p-6 max-w-2xl">
+        <h2 className="text-xl font-bold mb-4">Add Offer</h2>
+        <AddOfferForm influencers={influencers} onCreated={refreshOffers} />
+      </div>
+
     </div>
   )
 }
