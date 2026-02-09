@@ -43,7 +43,7 @@ pipx install poetry
 ## Setup
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/andrew-qa/offerly-test.git
 cd offerly
 ```
 
