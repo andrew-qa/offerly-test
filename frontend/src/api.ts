@@ -43,4 +43,22 @@ export async function addInfluencer(name: string): Promise<void> {
   await api.post("/influencers", { name });
 }
 
+export type OfferOverrideInput = {
+  payout_cpa_amount?: number | null;
+  payout_fixed_amount?: number | null;
+};
+
+export async function addOffer(offer: Omit<Offer, "id">): Promise<Offer> {
+  const response = await api.post<Offer>("/offers", offer);
+  return response.data;
+}
+
+export async function addOfferOverride(
+  offerId: string,
+  influencerId: string,
+  override: OfferOverrideInput
+): Promise<void> {
+  await api.post(`/offers/${offerId}/overrides/${influencerId}`, override);
+}
+
 
