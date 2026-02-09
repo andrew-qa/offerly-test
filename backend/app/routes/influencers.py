@@ -3,8 +3,8 @@ from typing import List
 from uuid import UUID
 from sqlmodel import Session, select
 
-from app.database import get_session
-from app.models import Influencer
+from ..database import get_session
+from ..models import Influencer
 
 router = APIRouter(prefix="/influencers", tags=["influencers"])
 

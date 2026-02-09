@@ -3,9 +3,9 @@ from typing import List, Optional
 from uuid import UUID
 from sqlmodel import Session, select
 
-from app.database import get_session
-from app.models import Offer, Influencer, OfferInfluencerPayoutOverride
-from app.schemas import OfferOverrideInput
+from ..database import get_session
+from ..models import Offer, Influencer, OfferInfluencerPayoutOverride
+from ..schemas import OfferOverrideInput
 
 router = APIRouter(prefix="/offers", tags=["offers"])
 
