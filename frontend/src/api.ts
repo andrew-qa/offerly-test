@@ -15,7 +15,32 @@ export type Offer = {
   payout_fixed_amount?: number;
 };
 
+export type Influencer = {
+  id: string;
+  name: string;
+};
+
+export async function getInfluencers(): Promise<Influencer[]> {
+  const response = await api.get<Influencer[]>("/influencers");
+  return response.data;
+}
+
 export async function getOffers(): Promise<Offer[]> {
   const response = await api.get<Offer[]>("/offers");
   return response.data;
 }
+
+export async function getOffersWithOverrides(
+  influencerId: string
+): Promise<Offer[]> {
+  const response = await api.get<Offer[]>("/offers", {
+    params: { influencer_id: influencerId },
+  })
+  return response.data
+}
+
+export async function addInfluencer(name: string): Promise<void> {
+  await api.post("/influencers", { name });
+}
+
+
