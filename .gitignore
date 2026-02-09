@@ -1,2 +1,53 @@
 # skip sqlite db files
 *.db
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env/
+pyenv/
+pip-wheel-metadata/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+eggs/
+.eggs/
+develop-eggs/
+sdist/
+wheelhouse/
+
+# Test/coverage
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# Type checkers
+.mypy_cache/
+.pytype/
+.pyre/
+pyrightconfig.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE/editor
+.vscode/
+.idea/
+.ruff_cache/
